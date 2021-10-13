@@ -15,13 +15,13 @@
       <md-drawer :md-active.sync="showNavigation" md-swipeable>
         <md-toolbar class="md-transparent" md-elevation="0">
           <span class="md-title">My App name</span>
+          <div class="md-toolbar-section-end">
+            <md-button class="md-icon-button md-dense" @click="toggleMenu">
+              <md-icon>keyboard_arrow_left</md-icon>
+            </md-button>
+          </div>
         </md-toolbar>
 
-        <div class="md-toolbar-section-end">
-          <md-button class="md-icon-button md-dense" @click="toggleMenu">
-            <md-icon>keyboard_arrow_left</md-icon>
-          </md-button>
-        </div>
 
         <md-list>
           <md-list-item>
@@ -58,7 +58,7 @@ export default {
     showNavigation: false,
   }),
   methods: {
-    toggleMenu () {
+    toggleMenu() {
       this.showNavigation = !this.showNavigation
     }
   }
