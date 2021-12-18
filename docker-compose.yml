@@ -14,12 +14,8 @@ services:
         NODE_ENV: development
     volumes:
       - ./frontend:/app
-#      - ./frontend/node_moduls
-    environment:
-      - NODE_ENV=developmnet
-      - MONGO_USER=mike
-      - MONGO_PASSWORD=password
-      - SESSION_SECRET=secret
+    env_file:
+      - '.env'
     ports:
       - "8080:8080"
     command: npm run serve
@@ -34,15 +30,14 @@ services:
       - '.env'
     volumes:
       - ./backend/app:/app:ro
-#    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: bash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
   postgres:
     image: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Password123!
-      POSTGRES_DB: fastapi
       PGDATA: /data/postgres
+    env_file:
+      - '.env_postgres'
     volumes:
       - postgres:/data/postgres
     ports:
@@ -53,10 +48,9 @@ services:
     image: dpage/pgadmin4
     depends_on:
       - postgres
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: AdminPassword123!
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+
+    env_file:
+      - '.env_postgres'
     volumes:
       - pgadmin:/var/lib/pgadmin
     ports:

@@ -1,9 +1,6 @@
 from fastapi import FastAPI
-from app.db.init_db import engine
-from app import models, crud, routes
+from app import routes
 
 app = FastAPI()
-
-models.todo.Base.metadata.create_all(engine)
 
 app.include_router(routes.todo.router)

@@ -6,7 +6,7 @@ from app.db.init_db import get_db
 from app import crud, schemas
 
 router = APIRouter(
-    prefix="/todo",
+    prefix="/api_v1/todo",
     tags=['ToDos']
 )
 

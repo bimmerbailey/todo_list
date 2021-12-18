@@ -1,7 +1,4 @@
 from sqlalchemy.orm import Session
-
-# from app.models import todo as todo_models
-# from app.schemas import todo as todo_schemas
 from app import models, schemas
 
 
