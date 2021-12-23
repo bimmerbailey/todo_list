@@ -136,3 +136,5 @@ node_modules
 
 **/frontend/src/**/*.map
 **/frontend/src/**/*.js
+
+yarn.lock
