@@ -1,16 +1,14 @@
-FROM node:15
+FROM node:14
 WORKDIR /app
 
-COPY package*.json /app/
+COPY package*.json .
 
-#ARG NODE_ENV
-#RUN if [ "$NODE_ENV" = "development" ]; \
-#        then npm install; \
-#        else npm install --only=production; \
-#        fi
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "development" ]; \
+        then yarn install; \
+        else yarn install --only=production; \
+        fi
 
-RUN yarn install
+COPY . .
 
-COPY ./ /app/
-
-RUN npm run build
+RUN yarn run build
