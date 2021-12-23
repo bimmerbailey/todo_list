@@ -19,3 +19,8 @@ def all_todos(db: Session = Depends(get_db)):
 @router.post('/', status_code=status.HTTP_201_CREATED)
 def create(request: schemas.todo.ToDo, db: Session = Depends(get_db)):
     return crud.todo.create_todo(db, request)
+
+
+@router.get('/{post_id}')
+def get_todo(post_id, db: Session = Depends(get_db)):
+    return crud.todo.get_single_todo(post_id, db)

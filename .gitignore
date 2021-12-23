@@ -133,3 +133,6 @@ dmypy.json
 
 # Frontend
 node_modules
+
+**/frontend/src/**/*.map
+**/frontend/src/**/*.js
