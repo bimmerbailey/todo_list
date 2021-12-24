@@ -1,0 +1,29 @@
+#!/bin/bash
+
+build() {
+    docker-compose build
+}
+
+start() {
+    docker-compose up "$@"
+}
+
+shell() {
+    docker-compose exec "$@" bash
+}
+
+stop() {
+    docker-compose down
+}
+
+destroy() {
+    docker-compose down -v
+}
+
+if [[ "$#" -eq 0 ]]; then
+    start
+else
+    CMD="$1"
+    shift
+    "$CMD" "$@"
+fi
