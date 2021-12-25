@@ -1,45 +1,47 @@
 <template>
   <v-container fluid>
-    <v-card v-if="task">
-      <v-card-title>
-        {{ title }}
-      </v-card-title>
-      <v-card-text>
-        {{ task }}
-      </v-card-text>
-      <v-container fluid>
+    <div v-if="!tasks.error">
+      <v-card
+        v-for="task in tasks.tasks"
+        :key="task.id"
+      >
+        <v-card-text>
+          {{ task.description }}
+        </v-card-text>
+        <v-container fluid>
 
-        <v-row>
-          <v-spacer></v-spacer>
-          <v-card-actions>
-            <v-btn color="green">Completed</v-btn>
-          </v-card-actions>
-          <v-card-actions>
-            <v-btn color="red">Delete</v-btn>
-          </v-card-actions>
-        </v-row>
+          <v-row>
+            <v-spacer></v-spacer>
+            <v-card-actions>
+              <v-btn color="green">Completed</v-btn>
+            </v-card-actions>
+            <v-card-actions>
+              <v-btn color="red">Update</v-btn>
+            </v-card-actions>
+          </v-row>
+        </v-container>
 
-      </v-container>
-
-    </v-card>
-    <v-card v-else>
-      <v-card-title>
-        Please Create a Task
-      </v-card-title>
-      <v-card-actions>
-        <v-btn color="green">Create Task</v-btn>
-      </v-card-actions>
-    </v-card>
+      </v-card>
+    </div>
   </v-container>
 </template>
 
 <script lang="ts">
-import {Vue, Component, Prop} from "vue-property-decorator";
+import {Vue, Component} from "vue-property-decorator";
+import {mapState} from "vuex";
+//https://blog.logrocket.com/vue-typescript-tutorial-examples/
 
-@Component
+@Component({
+  computed: {
+    ...mapState(['tasks']),
+  }
+})
 export default class Task extends Vue {
-  @Prop({default: 'This is a default task'}) task!: string
-  @Prop({default: 'This is a default title'}) title!: string
+
+  // eslint-disable-next-line
+  mounted() {
+    this.$store.dispatch('tasks/getTasks')
+  }
 }
 </script>
 

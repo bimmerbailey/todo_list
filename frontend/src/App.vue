@@ -17,21 +17,30 @@
             v-model="drawer"
             app
         >
-          <v-list>
-            <v-list-item>
-              <router-link to="/">Home</router-link>
-            </v-list-item>
-            <v-list-item>
-              <router-link to="/about">About</router-link>
-            </v-list-item>
-            <v-list-item>
-              <router-link to="/stack">Tech Stack</router-link>
-            </v-list-item>
+          <v-list
+              flat dense nav class="py-1"
+          >
+            <v-list-item-group color='primary' mandatory>
+              <v-list-item
+                  v-for="item in items"
+                  :key="item.title"
+                  dense
+                  :to="item.route"
+              >
+                <v-list-item-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+
+              </v-list-item>
+            </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
-        <v-container>
+        <v-main>
           <router-view></router-view>
-        </v-container>
+        </v-main>
       </v-card>
     </v-app>
   </div>
@@ -42,9 +51,12 @@ import {Component, Vue} from "vue-property-decorator";
 
 @Component
 export default class App extends Vue {
-  data() {
-    return {drawer: false}
-  }
+  drawer = false
+  items: Array<{ route: string, icon: string, title: string }> = [
+    {route: '/', icon: 'home', title: 'Home'},
+    {route: '/about', icon: 'information', title: 'About'},
+    {route: '/stack', icon: 'laptop', title: 'Tech Stack'},
+  ]
 }
 </script>
 

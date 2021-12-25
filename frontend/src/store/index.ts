@@ -1,17 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import tasks from './tasks'
 
-Vue.use(Vuex)
+import {tasks} from "@/store/tasks";
+import {RootState} from "@/store/types";
 
-export default new Vuex.Store({
-  // state: {
-  // },
-  // mutations: {
-  // },
-  // actions: {
-  // },
-  modules: {
-    tasks
-  }
-})
+Vue.use(Vuex);
+
+export default new Vuex.Store<RootState>({
+    state: {
+        version: '1.0.0', // a simple property
+    },
+    modules: {
+        tasks,
+    },
+    mutations: {},
+    actions: {},
+});
+
