@@ -6,6 +6,7 @@ app = FastAPI()
 
 origins = ["*"]
 
+# TODO: Update this for more security
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
