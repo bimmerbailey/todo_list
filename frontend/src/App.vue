@@ -16,6 +16,7 @@
         <v-navigation-drawer
             v-model="drawer"
             app
+            temporary
         >
           <v-list
               flat dense nav class="py-1"
@@ -54,8 +55,8 @@ export default class App extends Vue {
   drawer = false
   items: Array<{ route: string, icon: string, title: string }> = [
     {route: '/', icon: 'home', title: 'Home'},
-    {route: '/about', icon: 'information', title: 'About'},
     {route: '/stack', icon: 'laptop', title: 'Tech Stack'},
+    {route: '/about', icon: 'mdi-information', title: 'About'},
   ]
 }
 </script>

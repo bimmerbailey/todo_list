@@ -16,3 +16,5 @@ app.add_middleware(
 )
 
 app.include_router(routes.todo.router)
+app.include_router(routes.users.router)
+app.include_router(routes.auth.router)

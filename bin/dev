@@ -20,6 +20,10 @@ destroy() {
     docker-compose down -v
 }
 
+test() {
+    docker-compose exec backend pytest "$@"
+}
+
 if [[ "$#" -eq 0 ]]; then
     start
 else
