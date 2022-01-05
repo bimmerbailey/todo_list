@@ -1,20 +1,22 @@
 <template>
-<div>
-  <v-card>
-    <v-card-title>
-      The Tech Stack
-    </v-card-title>
-    <v-card-text>
-      This will be the section to show the stack used to create this
-      app
-    </v-card-text>
-  </v-card>
-</div>
+  <div>
+    <Tech>
+
+    </Tech>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "Stack"
+<script lang="ts">
+import {Vue, Component} from "vue-property-decorator";
+import Tech from "@/components/Tech.vue";
+
+@Component({
+  components: {
+    Tech
+  }
+})
+export default class Stack extends Vue {
+
 }
 </script>
 
