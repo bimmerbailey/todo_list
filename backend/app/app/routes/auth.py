@@ -8,7 +8,7 @@ from app.db import init_db
 from app.schemas import users
 from app import oauth
 
-router = APIRouter(tags=['Authentication'], prefix='/api_v1')
+router = APIRouter(tags=['Authentication'])
 
 
 @router.post('/login', response_model=users.Token)
