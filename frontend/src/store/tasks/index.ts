@@ -1,6 +1,7 @@
 import {Module} from "vuex";
 import {actions} from "@/store/tasks/actions";
 import {mutations} from "@/store/tasks/mutations";
+import {getters} from "@/store/tasks/getters";
 import {TaskState} from './types'
 import {RootState} from "@/store/types";
 
@@ -13,5 +14,6 @@ export const tasks: Module<TaskState, RootState> = {
     namespaced: true,
     state,
     actions,
+    getters,
     mutations
 };
