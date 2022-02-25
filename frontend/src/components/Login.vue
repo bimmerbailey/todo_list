@@ -27,7 +27,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="green" to="/" @click="login">Login</v-btn>
+            <v-btn color="green" @click="login">Login</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -52,8 +52,15 @@ export default class Login extends Vue {
   }
 
   public async login() {
-    console.log(this.$store)
     await this.$store.dispatch('auth/login', {username: this.email, password: this.password});
+    if (this.$store.getters['auth/authenticated']) {
+      await this.$router.push({name: 'Home'})
+    } else {
+      if (this.$router.currentRoute.path !== '/login') {
+        await this.$router.push('/login');
+      }
+    }
+
   }
 }
 </script>
