@@ -1,25 +1,30 @@
 <template>
   <v-container fluid>
-    <v-card
+    <v-row
         v-for="task in tasks"
         :key="task.id"
     >
-      <v-card-text>
-        {{ task.description }}
-      </v-card-text>
-      <v-container fluid>
+      <v-col>
+        <v-card>
+          <v-card-text>
+            {{ task.description }}
+          </v-card-text>
+          <v-container fluid>
 
-        <v-row>
-          <v-spacer></v-spacer>
-          <v-card-actions>
-            <v-btn color="green" @click="deleteTask(task.id)">Completed/Delete</v-btn>
-          </v-card-actions>
-          <v-card-actions>
-            <v-btn color="red">Update</v-btn>
-          </v-card-actions>
-        </v-row>
-      </v-container>
-    </v-card>
+            <v-row>
+              <v-spacer></v-spacer>
+              <v-card-actions>
+                <v-btn color="green" @click="deleteTask(task.id)">Completed/Delete</v-btn>
+              </v-card-actions>
+              <v-card-actions>
+                <v-btn color="red">Update</v-btn>
+              </v-card-actions>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-col>
+
+    </v-row>
   </v-container>
 </template>
 
