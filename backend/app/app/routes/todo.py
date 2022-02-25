@@ -11,12 +11,12 @@ router = APIRouter(
 )
 
 
-@router.get('')
+@router.get('/')
 async def all_todos(db: Session = Depends(get_db)):
     return crud.todo.get_todos(db)
 
 
-@router.post('', status_code=status.HTTP_201_CREATED, response_model=schemas.todo.ToDO)
+@router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.todo.ToDO)
 async def create(request: schemas.todo.ToDoBase, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
     return crud.todo.create_todo(db, request, current_user.id)
 
