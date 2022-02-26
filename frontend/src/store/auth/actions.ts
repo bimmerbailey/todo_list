@@ -26,5 +26,9 @@ export const actions: ActionTree<AuthState, RootState> = {
                 commit('setLoginError', true)
             })
     },
-
+    async logout({commit}) {
+        commit('setIsLoggedIn', false)
+        commit('setLoginError', true)
+        commit('setToken', '')
+    }
 }
