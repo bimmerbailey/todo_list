@@ -29,6 +29,10 @@
             <v-spacer></v-spacer>
             <v-btn color="green" @click="login">Login</v-btn>
           </v-card-actions>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="red" @click="logout">Logout</v-btn>
+          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
@@ -61,6 +65,10 @@ export default class Login extends Vue {
       }
     }
 
+  }
+
+  public async logout() {
+    await this.$store.dispatch('auth/logout')
   }
 }
 </script>
