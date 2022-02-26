@@ -66,6 +66,10 @@ export default class Login extends Vue {
     }
 
   }
+
+  public async logout() {
+    await this.$store.dispatch('auth/logout')
+  }
 }
 </script>
 
