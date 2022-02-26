@@ -14,6 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
@@ -26,8 +27,5 @@ jobs:
       with:
         context: ./
         file: ./backend/Dockerfile
-        builder: ${{ steps.buildx.outputs.name }}
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/todo_backend:1.0
-        cache-from: type=local,src=/tmp/.buildx-cache
-        cache-to: type=local,dest=/tmp/.buildx-cache
