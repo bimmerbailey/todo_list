@@ -8,7 +8,7 @@
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title>ToDo App</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn icon>
+          <v-btn icon to="/login">
             <v-icon>mdi-account</v-icon>
           </v-btn>
         </v-toolbar>

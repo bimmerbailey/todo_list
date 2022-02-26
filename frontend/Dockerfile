@@ -1,4 +1,4 @@
-FROM node:14
+FROM bimmerbailey/todo_frontend:1.0
 WORKDIR /app
 
 COPY package*.json .

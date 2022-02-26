@@ -11,16 +11,27 @@ router = APIRouter(
 )
 
 
-@router.get('')
-def all_todos(db: Session = Depends(get_db)):
+@router.get('/')
+async def all_todos(db: Session = Depends(get_db)):
     return crud.todo.get_todos(db)
 
 
-@router.post('', status_code=status.HTTP_201_CREATED)
-def create(request: schemas.todo.ToDo, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
+@router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.todo.ToDO)
+async def create(request: schemas.todo.ToDoBase, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
     return crud.todo.create_todo(db, request, current_user.id)
 
 
-@router.get('/{post_id}')
-def get_todo(post_id, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
-    return crud.todo.get_single_todo(post_id, db)
+@router.get('/{todo_id}', response_model=schemas.todo.ToDO)
+async def get_todo(todo_id, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
+    return crud.todo.get_single_todo(todo_id, db)
+
+
+@router.delete('/{todo_id}', status_code=status.HTTP_204_NO_CONTENT)
+async def delete_todo(todo_id, db: Session = Depends(get_db), current_user=Depends(oauth.get_current_user)):
+    return crud.todo.delete_todo(todo_id, db, current_user.id)
+
+
+@router.put('/{todo_id}', response_model=schemas.todo.ToDO)
+async def update_todo(todo_id, todo_data: schemas.todo.ToDoBase, db: Session = Depends(get_db),
+                      current_user=Depends(oauth.get_current_user)):
+    return crud.todo.update_todo(todo_id=todo_id, db=db, todo=todo_data, user_id=current_user.id)
