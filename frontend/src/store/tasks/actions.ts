@@ -22,5 +22,29 @@ export const actions: ActionTree<TaskState, RootState> = {
             .catch(err => {
                 console.log("Error Reading data " + err);
             });
+    },
+    async updateTask({commit}, payload: {taskId: number, description: string}) {
+        await api.updateTask(this.getters['auth/token'], payload.taskId, payload.description)
+            .then(response => {
+                return response.json()
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    },
+    async createTask({commit}, payload: {description: string}) {
+        await api.createTask(this.getters['auth/token'], payload.description)
+            .then(response => {
+                if (response.status == 201) {
+                    return response.json()
+                } else {
+                    throw new Error('Error saving data')
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+
     }
 }
